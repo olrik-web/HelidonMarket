@@ -1,0 +1,35 @@
+
+CREATE TABLE AD_USER(
+ID varchar(40) PRIMARY KEY,
+FIRST_NAME varchar(30) NOT NULL,
+LAST_NAME varchar(30) NOT NULL,
+COMPANY varchar(40),
+PHONE_NUMBER varchar(20) NOT NULL,
+PHONE_CODE varchar(10) NOT NULL,
+EMAIL varchar(100) NOT NULL UNIQUE,
+CREATION_DATE date NOT NULL,
+TYPE varchar(10) NOT NULL,
+CITY varchar(40) NOT NULL,
+ZIPCODE varchar(40) NOT NULL,
+)
+
+CREATE TABLE AD(
+ID varchar(40) PRIMARY KEY,
+CATEGORY varchar(40) NOT NULL,
+TYPE varchar(40) NOT NULL,
+HEADLINE varchar(40) NOT NULL,
+TEXT varchar(1000) NOT NULL,
+PRICE int NOT NULL,
+USER_FK varchar(40) NOT NULL,
+CREATION_DATE date NOT NULL,
+CONSTRAINT USER_FK foreign key(USER_FK) references AD_USER(ID),
+CONSTRAINT PRICE CHECK(PRICE>=0)
+)
+
+insert into Ad (CATEGORY, CREATION_DATE, HEADLINE, PRICE, TEXT, TYPE, USER_FK, Id) 
+values ('TOOLS', '2021-05-27', 'Drill for sale', 300, 'for masonry', 'sale', '0d0c6751-0af6-4010-8040-88f1c83f802f', '2590d19a-b603-41f0-966f-85bef28d8143')
+
+
+select * from AD
+
+select * from AD_USER
